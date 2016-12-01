@@ -157,9 +157,21 @@ if(user1 == null){
         <div class="logo">
             <a href="#"><img src="assets/logo.png" alt="" /></a>
         </div>
-        
+        <p class="space">
+    		<input type="submit" value="退出登陆" class="login" onclick="location='index.jsp'" style="cursor: pointer;">
+    		<input type="submit" value="返回" class="login" onclick="location='admin.jsp'" style="cursor: pointer;">
+    	</p>
     <div id="content">
-
+	<center>
+        <p>如果需要删除记录，请在下方输入记录编号</p>
+           <br>
+        <form action="doDelete.jsp" method="post">
+           <input name="delete_id" value="" />
+           <input type="submit" value="提交"  style="cursor: pointer;">
+        </form>
+    </center>
+    	<br>
+    		<br>
     <table>
     	<center>
     		<b>儿科的挂号情况</b>
@@ -346,14 +358,7 @@ if(user1 == null){
 		%>
 		   <br>
 				<br>
-					<center>
-						<p>如果需要删除记录，请在下方输入记录编号</p>
-						<br>
-						<form action="doDelete.jsp" method="post">
-							<input name="delete_id" value="" />
-							<input type="submit" value="提交"  style="cursor: pointer;">
-						</form>
-						<br>
-						<a href="admin.jsp">返回</a></center>
+					
+						
   	</body>
 </html>

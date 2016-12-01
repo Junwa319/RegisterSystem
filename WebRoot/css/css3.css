@@ -9,6 +9,7 @@
 fieldset, input, textarea, select, a.button, .meta ul li a, ul.nav li li a:hover, p.main input, input.login, table, .message, #easyTooltip, div.wysiwyg {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+	font-family: Microsoft YaHei;
 }
 
 ul.nav li a {

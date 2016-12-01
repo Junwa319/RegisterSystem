@@ -25,7 +25,7 @@
     	private static final String URL="jdbc:mysql://127.0.0.1:3306/junwa";
     	private static final String USER="root";
     	private static final String PASSWORD="1012";
-    	public String loginUser = "";
+    	public String chaxun_room = "";
     	Connection conn = null;
     	PreparedStatement stmt = null;
     	ResultSet res = null;
@@ -33,21 +33,16 @@
 %>
 
 <%      
-        String sql = "select * from guahao where user = ?" ;
-        String test1 = (String)session.getAttribute("loginUser");
-        String test = " "+test1;
+        String sql = "select * from guahao where room = ?" ;
+		request.setCharacterEncoding("UTF-8");
+		chaxun_room = request.getParameter("chaxun_room");
+		chaxun_room = " "+chaxun_room;
         
         Class.forName("com.mysql.jdbc.Driver");
         Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-        
         PreparedStatement stmt = conn.prepareStatement(sql);
-        stmt.setString(1, test);
-        //stmt.setString(1, test1);
-        loginUser = (String)session.getAttribute("loginUser");
-        // ResultSet res =  stmt.executeQuery("select * from guahao where user= '"+loginUser+"'");
+        stmt.setString(1, chaxun_room);
         ResultSet res = stmt.executeQuery();
-        
-        //System.out.println(res.getString("user_name"));
         
 %>
 
@@ -157,36 +152,40 @@
         	</div>
         	<center>
     				<p class="space">
-    				    <input type="submit" value="返回" class="login" onclick="location='login_success.jsp'" style="cursor: pointer;">
+    				    <input type="submit" value="返回" class="login" onclick="location='admin.jsp'" style="cursor: pointer;">
     				
     				    <input type="submit" value="退出登陆" class="login" onclick="location='index.jsp'" style="cursor: pointer;">
 				    </p>
     			
     			</center>
     		<div id="content">
-    			
-				
-    			<table cellspacing="0"><%
-        			if(res.next()){
-        				int a = res.getInt("id")-1;%>
-
-    					<tr><td><strong >挂号单</strong></td><td>您前面有<font style="color:red;"><%= a %></font>个人</td></tr>
-    					<tr><td>姓名</td><td><%= res.getString("user_name")%></td></tr>
-    					<tr><td>性别</td><td><%= res.getString("sex")%></td></tr>
-    					<tr><td>年龄</td><td><%= res.getString("age")%></td></tr>
-    					<tr><td>科室</td><td><%= res.getString("room")%></td></tr>
-    					<tr><td>医生</td><td><%= res.getString("doctor")%></td></tr>
-    					<tr><td>日期</td><td><%= res.getString("date")%></td></tr>
-    					<tr><td>时间</td><td><%= res.getString("time")%></td></tr>
-    					<tr><td>类别</td><td><%= res.getString("kind")%></td></tr>
-    					<tr><td>挂号费</td><td>25元</td></tr>
+			
+    			<table>
+ 
+    			<%
+        			while(res.next()) {
+        		%>
+     
+        				<tr>
+        		        	<td><%= res.getString("id")%></td>
+        					<td><%= res.getString("user_name")%></td>
+        					<td><%= res.getString("sex")%></td>
+        					<td><%= res.getString("age")%></td>
+        					<td><%= res.getString("room")%></td>
+        					<td><%= res.getString("doctor")%></td>
+        					<td><%= res.getString("date")%></td>
+        					<td><%= res.getString("time")%></td>
+        					<td><%= res.getString("kind")%></td>
+        				
+        				</tr>
+            	<%}%>
+        	
     
-    		<%}
-        			else{
-        				System.out.println("出现错误");
-        			}
-    		%>
+
+    
     			</table>
+
+			</div>
 
 			</div>
 			<%

@@ -6,6 +6,7 @@
 <%@page import="java.sql.*" %>
 <%@ page language="java" import="java.sql.*" pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" import="java.text.DecimalFormat" contentType="text/html; charset=UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -38,7 +39,7 @@ if(user1 == null){
     double counta;
     double countb;
     double countc;
-   
+    DecimalFormat df = new DecimalFormat( "0.00 ");
     
 %>
 
@@ -92,6 +93,7 @@ if(user1 == null){
 	}
 
 	double countm = counts_m/counts*100;
+	
 	double countw = (1 - counts_m/counts)*100;
 	double counta = counts_a/counts*100;
 	double countb = counts_b/counts*100;
@@ -231,16 +233,59 @@ if(user1 == null){
     			<br>
     				<br>
     					<br>
-    			<b>男性</b>占：<font color="red"><%= countm %>%</font>, <b>女性</b>占：<font color="red"><%= 100-countm %>%</font>;
+    			<b>男性</b>占：<font color="red"><%= df.format(countm) %>%</font>, <b>女性</b>占：<font color="red"><%= df.format(100-countm) %>%</font>;
     			<br>
     				<br>
     					<br>
-    			<b>18岁以下</b>人群占：<font color="red"><%= counta %>%</font>, <b>18-40岁</b>人群占<font color="red"><%= countb %>%</font>, 
-    			<b>40岁以上</b>人群占：<font color="red"><%= countc %>%</font>
+    			<b>18岁以下</b>人群占：<font color="red"><%= df.format(counta) %>%</font>, <b>18-40岁</b>人群占<font color="red"><%= df.format(countb) %>%</font>, 
+    			<b>40岁以上</b>人群占：<font color="red"><%= df.format(countc) %>%</font>
     		</div>  
-
+    		<br>
+    			<br>
+			<center>
+        		<p>如果需要删除记录，请在下方输入记录编号</p>
+           			<br>
+        		<form action="doDelete.jsp" method="post">
+           			<input name="delete_id" value="" />
+           			<input type="submit" value="提交"  style="cursor: pointer;">
+        		</form>
+        		<br>
+        		<p>如果需要查询某用户，请在下方输入姓名</p>
+           			<br>
+        		<form action="doChaxunName.jsp" method="post">
+           			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <input type="text" name="chaxun_name" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+           			<input type="submit" value="提交"  style="cursor: pointer;">
+        		</form>
+        		<br>
+        		<p>如果需要查询某医生，请在下方输入姓名</p>
+           			<br>
+        		<form action="doChaxunDoctor.jsp" method="post">
+           			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <input type="text" name="chaxun_doctor" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+           			<input type="submit" value="提交"  style="cursor: pointer;">
+        		</form>
+        		<br>
+        		<p>如果需要查询科室，请在下方输入科室</p>
+           			<br>
+        		<form action="doChaxunRoom.jsp" method="post">
+           			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <input type="text" name="chaxun_room" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+           			<input type="submit" value="提交"  style="cursor: pointer;">
+        		</form>
+        		<br>
+        		<p>如果需要查询时段，请在下方输入时段</p>
+           			<br>
+        		<form action="doChaxunTime.jsp" method="post">
+           			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                    <input type="text" name="chaxun_time" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+           			<input type="submit" value="提交"  style="cursor: pointer;">
+        		</form>
+            </center>
+    			<br>
+    				
     		<div id="content">
-
+			
     			<table>
  
     			<%
@@ -334,15 +379,7 @@ if(user1 == null){
 			%>
 				<br>
 					<br>
-			<center>
-				<p>如果需要删除记录，请在下方输入记录编号</p>
-				<br>
-				<form action="doDelete.jsp" method="post">
-					<input name="delete_id" value="" />
-					<input type="submit" value="提交"  style="cursor: pointer;">
-				</form>
-				<br>
-					<br>
+			
 						<br>
 							<br>
   </body>

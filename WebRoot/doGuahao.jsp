@@ -34,6 +34,7 @@
 
 		request.setCharacterEncoding("UTF-8");//解决中文乱码
 		name_guahao = request.getParameter("name");
+		System.out.println(name_guahao);
 		date_guahao = request.getParameter("date");
 		time_guahao = request.getParameter("time");
 		room_guahao = request.getParameter("province");
@@ -47,7 +48,6 @@
 		}
 		else{
     		boolean isValid = false; 
-    
     		try { 
   				Class.forName("com.mysql.jdbc.Driver");// 加载Mysql驱动程序 
   				String url = "jdbc:mysql://127.0.0.1:3306/junwa?useUnicode=true&characterEncoding=UTF8";// 127.0.0.1是本机地址
