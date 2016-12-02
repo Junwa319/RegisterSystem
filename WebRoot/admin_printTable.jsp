@@ -93,7 +93,6 @@ if(user1 == null){
 	}
 
 	double countm = counts_m/counts*100;
-	
 	double countw = (1 - counts_m/counts)*100;
 	double counta = counts_a/counts*100;
 	double countb = counts_b/counts*100;
@@ -266,19 +265,46 @@ if(user1 == null){
            			<input type="submit" value="提交"  style="cursor: pointer;">
         		</form>
         		<br>
-        		<p>如果需要查询科室，请在下方输入科室</p>
+        		<p>如果需要查询科室，请在下方选择科室</p>
            			<br>
         		<form action="doChaxunRoom.jsp" method="post">
-           			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    <input type="text" name="chaxun_room" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+           			<select name="chaxun_room" style="width: 135px;">
+             			<option value="0">请选择科室</option>
+             			<option value="外科">外科</option>
+                		<option value="内科">内科</option>         
+                		<option value="儿科">儿科</option>
+                		<option value="牙科">牙科</option>
+                		<option value="精神科">精神科</option>
+            		</select>
            			<input type="submit" value="提交"  style="cursor: pointer;">
         		</form>
         		<br>
-        		<p>如果需要查询时段，请在下方输入时段</p>
+        		<p>如果需要查询日期，请在下方选择日期</p>
+           			<br>
+        		<form action="doChaxunDate.jsp" method="post">
+                         <select name="chaxun_date" style="width: 135px;"> 
+                            	<option value="0">请选择日期</option>
+                            	<option value="周一">周一</option> 
+                                <option value="周二">周二</option>                   
+                                <option value="周三">周三</option>   
+                                <option value="周四">周四</option>   
+                                <option value="周五">周五</option> 
+                                <option value="周六">周六</option>    
+                                <option value="周日">周日</option>                            
+                          </select>
+           			<input type="submit" value="提交"  style="cursor: pointer;">
+        		</form>
+        		<br>
+        		<p>如果需要查询时段，请在下方选择时段</p>
            			<br>
         		<form action="doChaxunTime.jsp" method="post">
-           			<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    <input type="text" name="chaxun_time" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+           			<select name ="chaxun_time" style="width: 135px;">
+                                <option value="0">请选择时段</option>
+                                <option value="7:00-9:00">7：00~9：00</option>
+                                <option value="9:00-11:00">9：00~11：00</option> 
+                                <option value="14:00-16:00">14：00~16：00</option>                   
+                                <option value="16:00-18:00">16：00~18：00</option>                               
+                    </select>
            			<input type="submit" value="提交"  style="cursor: pointer;">
         		</form>
             </center>
